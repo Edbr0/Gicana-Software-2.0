@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 const dotenv = require('dotenv')
-const db = require('./db/database');
+import db from './db/database'
 const teamRoutes = require('./routes/teamRoutes')
 const colorRoutes = require('./routes/colorRoutes')
 const morgan = require('morgan')
@@ -23,5 +23,5 @@ app.use(colorRoutes)
 
 
 app.listen( 5000, () => {
-     console.log('Server rodando na porta 5000');
+     console.log('Server is runing on port 5000');
 });

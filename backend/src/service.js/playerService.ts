@@ -1,10 +1,10 @@
-const db = require('../db/database');
+import db from '../db/database'
 
 
-const editTeam = async (id, team) => {
+const editPlayer = async (id, Player) => {
     const query = {
-        text: `update gincana.teams set name = $1,  id_color = $2 where id = $3`,
-        values: [team.name, team.id_color, id],
+        text: `update gincana.Players set name = $1,  id_color = $2 where id = $3`,
+        values: [Player.name, Player.id_color, id],
       }
 
     try {
@@ -14,7 +14,7 @@ const editTeam = async (id, team) => {
                 status:'fail',
                 error:true,
                 success:false,
-                message:'Is not possible edit team'
+                message:'Is not possible edit Player'
             }
         }
 
@@ -22,23 +22,23 @@ const editTeam = async (id, team) => {
             status:'success',
             error:false,
             success:true,
-            message:'Team edited succefull'
+            message:'Player edited succefull'
         }
     } catch (error) {
         return {
             status:'fail',
             error:true,
             success:false,
-            message:'error editeding team: '+error
+            message:'error editeding Player: '+error
         }
     }  
     
 }
 
 
-const deleteTeam = async (id) => {
+const deletePlayer = async (id) => {
     const query = {
-        text: `delete from gincana.teams where id = $1`,
+        text: `delete from gincana.Players where id = $1`,
         values: [id],
       }
 
@@ -49,7 +49,7 @@ const deleteTeam = async (id) => {
                 status:'fail',
                 error:true,
                 success:false,
-                message:'Is not possible delete team'
+                message:'Is not possible delete Player'
             }
         }
 
@@ -57,25 +57,25 @@ const deleteTeam = async (id) => {
             status:'success',
             error:false,
             success:true,
-            message:'Team deleted succefull'
+            message:'Player deleted succefull'
         }
     } catch (error) {
         return {
             status:'fail',
             error:true,
             success:false,
-            message:'error deleteding team: '+error
+            message:'error deleteding Player: '+error
         }
     }  
     
 }
 
 
-const createTeam = async (team) => {
-    console.log('CRIAR TIME: ',team)
+const createPlayer = async (Player) => {
+    console.log('CRIAR TIME: ',Player)
     const query = {
-        text: `insert into gincana.teams (name, id_color) values ($1, $2)`,
-        values: [team.name, Number(team.color_id)],
+        text: `insert into gincana.Players (name, id_color) values ($1, $2)`,
+        values: [Player.name, Number(Player.color_id)],
       }
 
     try {
@@ -85,7 +85,7 @@ const createTeam = async (team) => {
                 status:'fail',
                 error:true,
                 success:false,
-                message:'Is not possible create team'
+                message:'Is not possible create Player'
             }
         }
 
@@ -93,7 +93,7 @@ const createTeam = async (team) => {
             status:'success',
             error:false,
             success:true,
-            message:'Team created succefull'
+            message:'Player created succefull'
         }
     } catch (error) {
         //console.log(error)
@@ -101,7 +101,7 @@ const createTeam = async (team) => {
             status:'fail',
             error:true,
             success:false,
-            message:'error creating team: '+error
+            message:'error creating Player: '+error
         }
     }  
     
@@ -110,9 +110,9 @@ const createTeam = async (team) => {
 
 
 
-const getAllTeam = async () => {
+const getAllPlayer = async () => {
     const query = {
-        text: `select *  from gincana.vw_teams`
+        text: `select *  from gincana.vw_Players`
       }
 
     try {
@@ -121,7 +121,7 @@ const getAllTeam = async () => {
             status:'success',
             error:false,
             success:true,
-            message:'teams listed successfully',
+            message:'Players listed successfully',
             data:data.rows
         }
     } catch (error) {
@@ -129,7 +129,7 @@ const getAllTeam = async () => {
             status:'fail',
             error:true,
             success:false,
-            message:'error listed team: '+error
+            message:'error listed Player: '+error
         }
     }  
     
@@ -137,9 +137,9 @@ const getAllTeam = async () => {
 
 
 module.exports = {
-    createTeam,
-    getAllTeam,
-    editTeam,
-    deleteTeam
+    createPlayer,
+    getAllPlayer,
+    editPlayer,
+    deletePlayer
 }
 

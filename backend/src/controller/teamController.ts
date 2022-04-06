@@ -1,25 +1,26 @@
 const { createTeam, getAllTeam, editTeam, deleteTeam } = require('../service.js/teamService')
+import {Request, Response} from 'express'
 
 
 
-const create = async (req, res)=>{
+const create = async (req:Request, res:Response)=>{
         return res.status(200).json(await createTeam(req.body))
     }
 
 
-const getAll = async (req, res)=>{
+const getAll = async (req:Request, res:Response)=>{
     return res.status(200).json(await getAllTeam())
 }
 
 
-const editOne = async (req, res)=>{
+const editOne = async (req:Request, res:Response)=>{
     const { id } = req.params
 
     return res.status(200).json(await editTeam(id ,req.body))
 }
 
 
-const deleteOne = async (req, res)=>{
+const deleteOne = async (req:Request, res:Response)=>{
     const { id } = req.params
 
     return res.status(200).json(await deleteTeam(id))
