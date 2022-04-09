@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model color_team {
+  id        Int    @id(map: "color_team_pk") @unique(map: "color_team_id_uindex") @default(autoincrement())
+  ds_color  String? @db.VarChar
+  cod_color String? @db.VarChar
+}
+
+model game_register {
+  id      Int    @id(map: "game_register_pk") @unique(map: "game_register_id_uindex") @default(autoincrement())
+  id_team Int
+  id_game Int
+  ds_game String @db.VarChar
+  ds_team String @db.VarChar
+  score   Int    @default(0)
+}
+
+model games {
+  id   Int    @id(map: "games_pk") @unique(map: "games_id_uindex") @default(autoincrement())
+  name String @db.VarChar
+}
+
+model members {
+  id      Int    @id(map: "members_pk") @unique(map: "members_id_uindex") @default(autoincrement())
+  name    String @db.VarChar
+  age     Int
+  id_team Int
+  status  String @db.VarChar
+}
+
+model teams {
+  id           Int    @id(map: "teams_pk") @unique(map: "teams_id_uindex") @default(autoincrement())
+  name         String @db.VarChar
+  id_color     Int?
+  total_pontos Int?
+}
+
+model vw_teams{
+  id Int @unique 
+  name String
+  id_color Int? 
+  total_pontos Int? 
+  cd_color String? @db.VarChar
+}
