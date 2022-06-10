@@ -83,7 +83,7 @@ const deleteTeam = async (id: any) => {
 };
 
 const createTeam = async (team: any) => {
-    const { name, id_color } = team;
+    const { name, color_id } = team;
     try {
         const exists = await connection.teams.findMany({
             where: {
@@ -103,7 +103,7 @@ const createTeam = async (team: any) => {
         const team = await connection.teams.create({
             data: {
                 name: name,
-                id_color: parseInt(id_color),
+                id_color: parseInt(color_id),
                 total_pontos: 0,
             },
         });
